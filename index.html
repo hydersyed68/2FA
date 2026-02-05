@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>2FA Demo</title>
+  <title>2FA Demo (Always Valid)</title>
+  <meta charset="UTF-8">
 </head>
 <body>
   <h2>Login</h2>
@@ -9,41 +10,28 @@
   <div id="login">
     <input id="username" placeholder="Username"><br><br>
     <input id="password" type="password" placeholder="Password"><br><br>
-    <button onclick="login()">Login</button>
+    <button onclick="loginUser()">Login</button>
   </div>
 
   <div id="otp" style="display:none;">
     <h3>Enter OTP</h3>
     <input id="otpInput" placeholder="OTP"><br><br>
-    <button onclick="verifyOTP()">Verify</button>
+    <button onclick="verifyOTP()">Verify OTP</button>
   </div>
 
   <p id="msg"></p>
 
   <script>
-    const VALID_USER = "admin";
-    const VALID_PASS = "password123";
-    const OTP = "123456"; // fixed OTP for testing
-
-    function login() {
-      const u = username.value;
-      const p = password.value;
-
-      if (u === VALID_USER && p === VALID_PASS) {
-        login.style.display = "none";
-        otp.style.display = "block";
-        msg.innerText = "OTP sent (use 123456)";
-      } else {
-        msg.innerText = "Invalid credentials";
-      }
+    function loginUser() {
+      // Accept ANY username & password
+      document.getElementById("login").style.display = "none";
+      document.getElementById("otp").style.display = "block";
+      document.getElementById("msg").innerText = "OTP sent (any OTP will work)";
     }
 
     function verifyOTP() {
-      if (otpInput.value === OTP) {
-        msg.innerText = "Login successful 🎉";
-      } else {
-        msg.innerText = "Invalid OTP";
-      }
+      // Accept ANY OTP
+      document.getElementById("msg").innerText = "Login successful 🎉";
     }
   </script>
 </body>
